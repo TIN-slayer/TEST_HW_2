@@ -22,7 +22,7 @@ class UserServiceImpl(private val dao: UserDao) : UserService {
             }
             return id
         } catch (e: SQLException) {
-            throw UserException("Проблемы с сервером, попробуйте ещё раз")
+            throw UserException("Возникли проблемы, попробуйте ещё раз")
         }
     }
 
@@ -30,7 +30,7 @@ class UserServiceImpl(private val dao: UserDao) : UserService {
         try {
             return dao.getIsAdmin(userId)
         } catch (e: SQLException) {
-            throw UserException("Проблемы с сервером, попробуйте ещё раз")
+            throw UserException("Возникли проблемы, попробуйте ещё раз")
         }
     }
 
@@ -38,7 +38,7 @@ class UserServiceImpl(private val dao: UserDao) : UserService {
         try {
             return dao.getOrderId(userId)
         } catch (e: SQLException) {
-            throw UserException("Проблемы с сервером, попробуйте ещё раз")
+            throw UserException("Возникли проблемы, попробуйте ещё раз")
         }
     }
 
@@ -46,7 +46,7 @@ class UserServiceImpl(private val dao: UserDao) : UserService {
         try {
             dao.assignOrder(userId, orderId)
         } catch (e: SQLException) {
-            throw UserException("Проблемы с сервером, попробуйте ещё раз")
+            throw UserException("Возникли проблемы, попробуйте ещё раз")
         }
     }
 }

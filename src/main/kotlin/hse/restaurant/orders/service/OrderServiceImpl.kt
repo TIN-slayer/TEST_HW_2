@@ -10,7 +10,7 @@ class OrderServiceImpl(private val dao: OrderDao) : OrderService {
         try {
             return dao.addOrder()
         } catch (e: SQLException) {
-            throw OrderException("Проблемы с сервером, попробуйте ещё раз")
+            throw OrderException("Возникли проблемы, попробуйте ещё раз")
         }
     }
 
@@ -22,7 +22,7 @@ class OrderServiceImpl(private val dao: OrderDao) : OrderService {
                 Thread.sleep(time)
                 dao.changeFoodCount(orderId, -1)
             } catch (e: SQLException) {
-                throw OrderException("Проблемы с сервером, попробуйте ещё раз")
+                throw OrderException("Возникли проблемы, попробуйте ещё раз")
             }
         }
     }
@@ -31,7 +31,7 @@ class OrderServiceImpl(private val dao: OrderDao) : OrderService {
         try {
             return dao.getFoodCount(orderId) > 0 // Заказ в процессе
         } catch (e: SQLException) {
-            throw OrderException("Проблемы с сервером, попробуйте ещё раз")
+            throw OrderException("Возникли проблемы, попробуйте ещё раз")
         }
     }
 
@@ -39,7 +39,7 @@ class OrderServiceImpl(private val dao: OrderDao) : OrderService {
         try {
             return dao.getBill(orderId)
         } catch (e: SQLException) {
-            throw OrderException("Проблемы с сервером, попробуйте ещё раз")
+            throw OrderException("Возникли проблемы, попробуйте ещё раз")
         }
     }
 }

@@ -2,7 +2,6 @@ package hse.restaurant.menu.service
 
 import hse.restaurant.menu.dao.MenuDao
 import hse.restaurant.menu.exception.MenuException
-import hse.restaurant.users.exception.UserException
 import java.sql.SQLException
 
 class MenuServiceImpl(private val dao: MenuDao) : MenuService {
@@ -10,7 +9,7 @@ class MenuServiceImpl(private val dao: MenuDao) : MenuService {
         try {
             println(dao.showMenu())
         } catch (e: SQLException) {
-            throw MenuException("Проблемы с сервером, попробуйте ещё раз")
+            throw MenuException("Возникли проблемы, попробуйте ещё раз")
         }
     }
 
@@ -34,7 +33,7 @@ class MenuServiceImpl(private val dao: MenuDao) : MenuService {
         try {
             return dao.deleteFood(foodId)
         } catch (e: SQLException) {
-            throw MenuException("Проблемы с сервером, попробуйте ещё раз")
+            throw MenuException("Возникли проблемы, попробуйте ещё раз")
         }
     }
 }

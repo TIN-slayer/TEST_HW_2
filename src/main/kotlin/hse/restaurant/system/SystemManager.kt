@@ -95,6 +95,7 @@ object SystemManager {
             val textOrder = readln()
             if (textOrder != "0") {
                 val missed = mutableListOf<String>()
+                var valid = false
                 for (foodIdStr in textOrder.split("\\s+".toRegex())) {
                     try {
                         val (price, time, count) = menuService.takeFood(foodIdStr.toInt())
@@ -104,21 +105,30 @@ object SystemManager {
                                 userService.assignOrder(userId, orderId)
                             }
                             orderService.orderFoodItem(orderId, price, time * 1000)
+                            valid = true
                         } else {
                             missed.add(foodIdStr)
                         }
                     } catch (e: NumberFormatException) {
-                        throw MenuException("Некорректные номера блюд")
+                        missed.add(foodIdStr)
+                    } catch (e: MenuException){
+                        missed.add(foodIdStr)
                     }
                 }
-                println("Спасибо, блюда успешно добавлены в заказ.")
-                if (missed.size > 0) {
-                    println("За исключением тех, что не было в наличии:")
-                    missed.forEach { print("${it} ") }
-                    println()
+                if (valid){
+                    println("Спасибо, блюда успешно добавлены в заказ.")
+                    if (missed.size > 0) {
+                        println("Данные блюда пришлось пропустить по следующим причинам (номер - не число, нет блюда с таким номером, блюдо закончилось):")
+                        missed.forEach { print("${it} ") }
+                        println()
+                    }
+                    Thread.sleep(50)
+                    println("Стоимость заказа ${orderService.getBill(orderId)} р")
                 }
-                Thread.sleep(50)
-                println("Стоимость заказа ${orderService.getBill(orderId)} р")
+                else{
+                    println("Некорректные данные для заказа (номер - не число, нет блюда с таким номером, блюдо закончилось)")
+                }
+
             }
         }
     }

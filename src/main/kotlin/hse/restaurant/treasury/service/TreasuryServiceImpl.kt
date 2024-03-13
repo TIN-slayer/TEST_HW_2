@@ -9,7 +9,7 @@ class TreasuryServiceImpl(private val dao: TreasuryDao) : TreasuryService {
         try {
             dao.receivePayment(bill)
         } catch (e: SQLException) {
-            throw TreasuryException("Проблемы с сервером, попробуйте ещё раз")
+            throw TreasuryException("Возникли проблемы, попробуйте ещё раз")
         }
     }
 
@@ -17,7 +17,7 @@ class TreasuryServiceImpl(private val dao: TreasuryDao) : TreasuryService {
         try {
             return dao.showIncome()
         } catch (e: SQLException) {
-            throw TreasuryException("Проблемы с сервером, попробуйте ещё раз")
+            throw TreasuryException("Возникли проблемы, попробуйте ещё раз")
         }
     }
 }
