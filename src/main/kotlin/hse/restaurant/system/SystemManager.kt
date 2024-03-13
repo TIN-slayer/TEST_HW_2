@@ -171,12 +171,12 @@ object SystemManager {
         val name = readln()
         try {
             println("Введите стоимость блюда в рублях")
-            val price = readln().toInt()
+            val price = readln().toUInt()
             println("Введите длительность приготовления блюда в секндах")
-            val time = readln().toInt()
+            val time = readln().toUInt()
             println("Введите кол-во блюд в наличии")
-            val count = readln().toInt()
-            menuService.addFood(name, price, time, count)
+            val count = readln().toUInt()
+            menuService.addFood(name, price.toInt(), time.toInt(), count.toInt())
             println("Блюдо успешно добавлено")
         } catch (e: NumberFormatException) {
             throw MenuException("Стоимость, длительность и кол-во должны быть числами")
