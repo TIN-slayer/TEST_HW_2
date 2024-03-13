@@ -110,15 +110,15 @@ object SystemManager {
                     } catch (e: NumberFormatException) {
                         throw MenuException("Некорректные номера блюд")
                     }
-                    println("Спасибо, блюда успешно добавлены в заказ.")
-                    if (missed.size > 0) {
-                        println("За исключением тех, что не было в наличии:")
-                        missed.forEach { print("${it} ") }
-                        println()
-                    }
-                    Thread.sleep(100)
-                    println("Стоимость заказа ${orderService.getBill(orderId)} р")
                 }
+                println("Спасибо, блюда успешно добавлены в заказ.")
+                if (missed.size > 0) {
+                    println("За исключением тех, что не было в наличии:")
+                    missed.forEach { print("${it} ") }
+                    println()
+                }
+                Thread.sleep(50)
+                println("Стоимость заказа ${orderService.getBill(orderId)} р")
             }
         }
     }
